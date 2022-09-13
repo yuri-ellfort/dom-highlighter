@@ -1,0 +1,59 @@
+<div id="highlight-settings" class="highlight-settings">
+    <div class="highlight-settings__header">
+        <div class="highlight-settings__about">
+            <div class="highlight-settings__logo">
+            </div>
+            <div class="highlight-settings__title">Highlighter</div>
+        </div>
+
+        <div class="highlight-settings__right-group">
+            <div class="highlight-settings__attach-buttons">
+                <div class="highlight-settings__attach-button" data-type="top-left"></div>
+                <div class="highlight-settings__attach-button" data-type="top-right"></div>
+                <div class="highlight-settings__attach-button" data-type="bottom-left"></div>
+                <div class="highlight-settings__attach-button" data-type="bottom-right"></div>
+                <div class="highlight-settings__attach-button highlight-settings__attach-button_center" data-type="center"></div>
+            </div>
+            <svg class="highlight-settings__close-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g>
+                    <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <form class="highlight-settings__form">
+        <div class="highlight-settings__line">
+            <label class="highlight-settings__label" for="colorHighlightSettings">Color</label>
+            <input class="highlight-settings__field" id="colorHighlightSettings" type="color" name="color"
+                   autocomplete="off">
+        </div>
+        <div class="highlight-settings__line">
+            <label class="highlight-settings__label" for="sizeHighlightSettings">Size</label>
+            <input class="highlight-settings__field" id="sizeHighlightSettings" type="number" name="size" min="1"
+                   max="5" value="1" autocomplete="off">
+        </div>
+        <div class="highlight-settings__line">
+            <label class="highlight-settings__label" for="opacityHighlightSettings">Opacity</label>
+            <input class="highlight-settings__field" id="opacityHighlightSettings" type="number" name="size" min="0.01"
+                   max="1" value="1" step="0.1" autocomplete="off">
+        </div>
+        <div class="highlight-settings__line">
+            <label class="highlight-settings__label" for="typeHighlightSettings">Type</label>
+            <select class="highlight-settings__field" id="typeHighlightSettings">
+                <option value="box-shadow" class="highlight-settings__option">Box shadow</option>
+                <option value="outline" class="highlight-settings__option">Outline</option>
+                <option value="border" class="highlight-settings__option">Border</option>
+            </select>
+        </div>
+        <div class="highlight-settings__line">
+            <label class="highlight-settings__label" for="maskHighlightSettings">Mask</label>
+            <div class="highlight-settings__fields">
+                <label class="highlight-settings__checkbox-label" for="useMaskHighlightSettings"></label>
+                <input class="highlight-settings__checkbox" id="useMaskHighlightSettings" type="checkbox"
+                       name="useMask" autocomplete="off">
+                <input class="highlight-settings__field highlight-settings__field--mask-state"
+                       id="maskHighlightSettings" type="text" name="mask" autocomplete="off">
+            </div>
+        </div>
+    </form>
+</div>

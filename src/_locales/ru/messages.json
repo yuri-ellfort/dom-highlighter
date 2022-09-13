@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "DOM Highlighter",
+    "description": "Extension name"
+  },
+  "extShortName": {
+    "message": "Highlighter"
+  },
+  "extDescription": {
+    "message": "Подсвечивает DOM элементы.",
+    "description": "Extension description"
+  },
+  "settingsPopupTitle": {
+    "message": "Параметры",
+    "description": "Title of settings popup"
+  },
+  "color": {
+    "message": "Цвет"
+  },
+  "size": {
+    "message": "Размер"
+  },
+  "opacity": {
+    "message": "Прозрачность"
+  },
+  "mask": {
+    "message": "Маска"
+  },
+  "type": {
+    "message": "Тип"
+  }
+}

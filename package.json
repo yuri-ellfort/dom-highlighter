@@ -1,0 +1,26 @@
+{
+  "name": "dom-highlighter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "author": "Yuri Ellfort",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.178",
+    "@types/html-minifier": "^4.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "html-minifier": "^4.0.0",
+    "sass": "^1.70.0",
+    "typescript": "^4.8.3",
+    "vite": "^5.1.1",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-static-copy": "^1.0.1"
+  }
+}

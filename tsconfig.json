@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDir": "src",
+    "outDir": "build",
+    "noEmitOnError": true,
+    "typeRoots": [ "node_modules/@types", "src/types" ],
+    "resolveJsonModule": true,
+    "moduleResolution": "Node",
+    "jsx": "react"
+  }
+}

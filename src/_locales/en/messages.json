@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "DOM Highlighter",
+    "description": "Extension name"
+  },
+  "extShortName": {
+    "message": "Highlighter"
+  },
+  "extDescription": {
+    "message": "Highlight DOM elements",
+    "description": "Extension description."
+  },
+  "settingsPopupTitle": {
+    "message": "Settings",
+    "description": "Title of settings popup"
+  },
+  "color": {
+    "message": "Color"
+  },
+  "size": {
+    "message": "Size"
+  },
+  "opacity": {
+    "message": "Opacity"
+  },
+  "mask": {
+    "message": "Mask"
+  },
+  "type": {
+    "message": "Type"
+  }
+}
