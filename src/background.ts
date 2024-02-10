@@ -5,7 +5,6 @@ import SettingsPopupHtml from './components/settings-popup/settings-popup.html?r
 import SettingsPopupScript from './components/settings-popup/settings-popup';
 import { defaultHighlightParams } from "./utils/constans";
 import Messages from './_locales/en/messages.json';
-import tabId = chrome.devtools.inspectedWindow.tabId;
 
 class Background {
 	private highlights: Record<number, Highlight> = [];
@@ -42,21 +41,25 @@ class Background {
 			}
 
 			if (!this.highlights[tabId]) {
-				this.highlights[tabId] = {
-					tabId,
-					active: false,
-					settingsInjected: false,
-					params: defaultHighlightParams,
-					messages: {},
-				};
-
-				this.initMessages(tabId);
-				await this.injectContent(tabId);
+				await this.initHilightForTab(tabId);
 			}
 
 			this.highlights[tabId].active = !this.highlights[tabId].active;
 			this.doHighlight(tabId);
 		});
+	}
+
+	private async initHilightForTab(tabId: number): Promise<void> {
+		this.highlights[tabId] = {
+			tabId,
+			active: false,
+			settingsInjected: false,
+			params: defaultHighlightParams,
+			messages: {},
+		};
+
+		this.initMessages(tabId);
+		await this.injectContent(tabId);
 	}
 
 	private initTabChangeHandler(): void {
@@ -152,6 +155,11 @@ class Background {
 	}
 
 	private async openSettingsPopup(tabId: number): Promise<void> {
+
+		if (!this.highlights[tabId]) {
+			await this.initHilightForTab(tabId);
+		}
+
 		if (!this.highlights[tabId].settingsInjected) {
 			await chrome.scripting.executeScript({
 				target: {tabId},
