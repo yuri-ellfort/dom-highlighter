@@ -1,5 +1,6 @@
 import { HighlightParams } from '../../interfaces/background.interfaces';
 import { SettingsAction, SettingsFieldParam, SettingsPopupParams } from '../../interfaces/settings-popup.interfaces';
+import logMessage = chrome.cast.logMessage;
 
 function SettingsPopup(): void {
 	const name = 'highlight-settings';
@@ -57,6 +58,7 @@ function SettingsPopup(): void {
 		setPosition('center');
 		setEventListeners();
 		useDragAndDrop(popup, popupHeader);
+		counter();
 	}
 
 	function initMessageListener(): void {
@@ -119,7 +121,7 @@ function SettingsPopup(): void {
 					setPosition(attachPosition);
 				}
 			});
-		})
+		});
 	}
 
 	function initField(field: HTMLInputElement, param: SettingsFieldParam): void {
@@ -190,12 +192,20 @@ function SettingsPopup(): void {
 			data: {
 				type: (<HTMLSelectElement>event.target).value
 			}
-		})
+		});
 	}
 
 	function setMask(): void {
 		const mask = (<HTMLInputElement>document.getElementById('highlightSettingsMask')).value;
-		const active = (<HTMLInputElement>document.getElementById('highlightSettingsUseMask')).checked;
+		let active = false;
+		const checkbox = (<HTMLInputElement>document.getElementById('highlightSettingsUseMask'));
+
+		checkbox.addEventListener('change', () => {
+			if (checkbox.checked) {
+				active = true;
+			}
+		});
+
 
 		chrome.runtime.sendMessage({
 			action: 'changeParams',
@@ -208,6 +218,47 @@ function SettingsPopup(): void {
 
 	function setUseMask(): void {
 		setMask();
+	}
+
+	function counter(): void {
+		const counterElements = document.querySelectorAll('.highlight-settings__counter');
+
+		counterElements.forEach(counterElement => {
+			const plusBtn = counterElement.querySelector('.highlight-settings__counterPlus') as HTMLElement;
+			const minusBtn = counterElement.querySelector('.highlight-settings__counterMinus') as HTMLElement;
+			const field = counterElement.querySelector('.highlight-settings__field') as HTMLInputElement;
+			let currentValue = parseFloat(field.value);
+			const step = parseFloat(field.step);
+
+			plusBtn.addEventListener('click', () => {
+				if (currentValue < parseFloat(field.max)) {
+					currentValue = Math.min(currentValue + step, parseFloat(field.max));
+
+					if (field.id === 'opacityHighlightSettings') {
+						field.value = currentValue.toFixed(1);
+					} else {
+						field.value = String(currentValue);
+					}
+
+					field.dispatchEvent(new Event('change'));
+				}
+			});
+
+			minusBtn.addEventListener('click', () => {
+				if (currentValue > parseFloat(field.min)) {
+					currentValue = Math.max(currentValue - step, parseFloat(field.min));
+
+					if (field.id === 'opacityHighlightSettings') {
+						field.value = currentValue.toFixed(1);
+					} else {
+						field.value = String(currentValue);
+					}
+
+					field.dispatchEvent(new Event('change'));
+				}
+			});
+		});
+
 	}
 
 	function debounce<Params extends any[]>(

@@ -105,22 +105,19 @@ class Background {
 	}
 
 	private initChangeParamsHandler(): void {
-		chrome.runtime.onMessage.addListener(message => {
-			if (message.action === 'changeParams') {
-				this.changeParams(message.data);
+
+		chrome.runtime.onMessage.addListener((message, sender) => {
+			if (message.action === 'changeParams' && sender.tab?.id) {
+				this.changeParams(sender.tab.id, message.data);
 			}
 		});
 	}
 
-	private changeParams(params: Partial<HighlightParams>): void {
-		chrome.tabs.query({currentWindow: true, active: true}, tab => {
-			const tabId = tab[0].id;
-
-			if (tabId && this.highlights[tabId]) {
-				Object.assign(this.highlights[tabId].params, params);
-				this.doHighlight(tabId);
-			}
-		});
+	private changeParams(tabId: number, params: Partial<HighlightParams>): void {
+		if (this.highlights[tabId]) {
+			Object.assign(this.highlights[tabId].params, params);
+			this.doHighlight(tabId);
+		}
 	}
 
 	private initMessages(tabId: number): void {
@@ -128,7 +125,7 @@ class Background {
 
 		Object.keys(params).forEach(paramName => {
 			this.highlights[tabId].messages[paramName] = Background.getMessage(paramName);
-		})
+		});
 	}
 
 	private async injectContent(tabId: number): Promise<void> {
@@ -144,12 +141,12 @@ class Background {
 			data: this.highlights[tabId],
 		});
 
-		this.updateIcon(tabId)
+		this.updateIcon(tabId);
 	}
 
 	private updateIcon(tabId: number): void {
 		const active = !!this.highlights[tabId]?.active ?? false;
-		const iconPath = `/images/icons/${active ? 'active-16.png' : 'default-16.png'}`;
+		const iconPath = `/images/icons/${active ? 'preview-active-48.png' : 'preview-48.png'}`;
 
 		chrome.action.setIcon({path: iconPath});
 	}
@@ -204,7 +201,7 @@ class Background {
 			id: 'settings',
 			title: Background.getMessage('settingsPopupTitle'),
 			contexts: ['action']
-		})
+		});
 	}
 }
 
