@@ -27,7 +27,7 @@ function SettingsPopup(): void {
 		},
 		useMask: {
 			event: 'change',
-			action: setUseMask,
+			action: setMask,
 		},
 	};
 
@@ -195,28 +195,16 @@ function SettingsPopup(): void {
 	}
 
 	function setMask(): void {
-		const mask = (<HTMLInputElement>document.getElementById('highlightSettingsMask')).value;
-		let active = false;
-		const checkbox = (<HTMLInputElement>document.getElementById('highlightSettingsUseMask'));
-
-		checkbox.addEventListener('change', () => {
-			if (checkbox.checked) {
-				active = true;
-			}
-		});
-
+		const maskInputValue = (<HTMLInputElement>document.getElementById('maskHighlightSettings')).value;
+		const maskCheckboxValue = (<HTMLInputElement>document.getElementById('useMaskHighlightSettings')).checked;
 
 		chrome.runtime.sendMessage({
 			action: 'changeParams',
 			data: {
-				mask: mask,
-				useMask: active,
+				mask: maskInputValue,
+				useMask: maskCheckboxValue,
 			}
 		});
-	}
-
-	function setUseMask(): void {
-		setMask();
 	}
 
 	function counter(): void {
