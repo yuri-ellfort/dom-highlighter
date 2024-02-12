@@ -41,7 +41,7 @@ class Background {
 			}
 
 			if (!this.highlights[tabId]) {
-				await this.initHilightForTab(tabId);
+				await this.initHighlightForTab(tabId);
 			}
 
 			this.highlights[tabId].active = !this.highlights[tabId].active;
@@ -49,7 +49,7 @@ class Background {
 		});
 	}
 
-	private async initHilightForTab(tabId: number): Promise<void> {
+	private async initHighlightForTab(tabId: number): Promise<void> {
 		this.highlights[tabId] = {
 			tabId,
 			active: false,
@@ -88,8 +88,6 @@ class Background {
 
 				if (this.highlights[tabId]) {
 					await this.injectContent(tabId);
-
-
 					this.doHighlight(tabId);
 				}
 			}
@@ -152,9 +150,8 @@ class Background {
 	}
 
 	private async openSettingsPopup(tabId: number): Promise<void> {
-
 		if (!this.highlights[tabId]) {
-			await this.initHilightForTab(tabId);
+			await this.initHighlightForTab(tabId);
 		}
 
 		if (!this.highlights[tabId].settingsInjected) {

@@ -7,5 +7,5 @@ export const defaultHighlightParams: HighlightParams = {
 	defaultMask: '*',
 	mask: '',
 	useMask: false,
-	type: 'box-shadow'
+	type: 'outline'
 };

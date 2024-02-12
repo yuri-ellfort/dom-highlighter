@@ -1,6 +1,5 @@
 import { HighlightParams } from '../../interfaces/background.interfaces';
 import { SettingsAction, SettingsFieldParam, SettingsPopupParams } from '../../interfaces/settings-popup.interfaces';
-import logMessage = chrome.cast.logMessage;
 
 function SettingsPopup(): void {
 	const name = 'highlight-settings';
