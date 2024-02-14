@@ -15,7 +15,7 @@
     }
 
     &__logo {
-      background-image: url("/public/images/icons/preview.svg");
+      background-image: url("/public/images/icons/active-48.png");
     }
 
     &__title {
@@ -207,42 +207,9 @@
     color: #75c048;
   }
 
-  &__attach-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2px;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    width: 26px;
-    height: 26px;
-  }
-
   &__right-group {
     display: flex;
     gap: 15px;
-  }
-
-  &__attach-button {
-    background-color: #9b9b9b;
-    cursor: pointer;
-    transition: background-color 0.2s;
-
-    &_active,
-    &:hover {
-      background-color: #f89b36;
-    }
-
-    &_center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2px solid #282C2F;
-    }
   }
 
   &__close-btn {

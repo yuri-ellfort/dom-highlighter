@@ -54,7 +54,6 @@ function SettingsPopup(): void {
 			}
 		});
 
-		setPosition('center');
 		setEventListeners();
 		useDragAndDrop(popup, popupHeader);
 		counter();
@@ -68,58 +67,9 @@ function SettingsPopup(): void {
 		});
 	}
 
-	function setPosition(position: string): void {
-		const popup = document.getElementById(name);
-
-		if (!popup) {
-			return;
-		}
-
-		popup.removeAttribute('style');
-
-		document.querySelectorAll(className + '__attach-button')
-			.forEach(button1 => button1.classList.remove(name + '__attach-button_active'));
-		document
-			.querySelector(className + '__attach-button' + `[data-type="${position}"]`)
-			?.classList.add(name + '__attach-button_active');
-
-		switch (position) {
-			case 'top-left':
-				popup.style.top = '0px'
-				popup.style.left = '0px'
-				break;
-			case 'top-right':
-				popup.style.top = '0px'
-				popup.style.left = `${document.documentElement.clientWidth - popup.clientWidth}px`
-				break;
-			case 'bottom-left':
-				popup.style.top = `${document.documentElement.clientHeight - popup.clientHeight}px`
-				popup.style.left = '0px'
-				break;
-			case 'bottom-right':
-				popup.style.top = `${document.documentElement.clientHeight - popup.clientHeight}px`
-				popup.style.left = `${document.documentElement.clientWidth - popup.clientWidth}px`
-				break;
-			case 'center':
-				popup.style.top = `${(document.documentElement.clientHeight - popup.clientHeight) / 2}px`
-				popup.style.left = `${(document.documentElement.clientWidth - popup.clientWidth) / 2}px`
-				break;
-		}
-	}
-
 	function setEventListeners(): void {
 		document.querySelector(className + '__close-btn')?.addEventListener('click', () => {
 			document.querySelector(className)?.remove();
-		});
-
-		document.querySelectorAll(className + '__attach-button').forEach(button => {
-			button.addEventListener('click', () => {
-				const attachPosition = button.getAttribute('data-type');
-
-				if (attachPosition) {
-					setPosition(attachPosition);
-				}
-			});
 		});
 	}
 

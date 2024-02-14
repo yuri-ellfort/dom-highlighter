@@ -144,7 +144,7 @@ class Background {
 
 	private updateIcon(tabId: number): void {
 		const active = !!this.highlights[tabId]?.active ?? false;
-		const iconPath = `/images/icons/${active ? 'preview-active-48.png' : 'preview-48.png'}`;
+		const iconPath = `/images/icons/${active ? 'active-16.png' : 'default-48.png'}`;
 
 		chrome.action.setIcon({path: iconPath});
 	}
